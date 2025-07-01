@@ -3,10 +3,10 @@ name: Deploy to S3
 on:
   push:
     branches:
-      - main  # or your default branch
+      - main  
 
 jobs:
-  deploy:
+  upload-to-s3:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,6 +19,6 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-south-1
-      - name: Sync files to S3 bucket
+      - name: upload files to s3
         run: |
-          run: aws s3 sync ./files/ s3://khemubucket/s3Folder
+          aws s3 sync ./hdlife s3://khemubucket
